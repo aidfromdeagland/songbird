@@ -9,12 +9,8 @@ import DescriptionBlock from './descriptionBlock/descriptionBlock';
 export default function App() {
   return (
     <Container>
-      <Row>
-        <Header />
-      </Row>
-      <Row>
-        <QuestionBlock />
-      </Row>
+      <Header />
+      <QuestionBlock />
       <Row>
         <Col>
           <VariantsBlock />
