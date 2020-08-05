@@ -12,14 +12,14 @@ export default function Header() {
   return (
     <Row className="header">
       <Col>
-        <Row>
+        <Row className="justify-content-between">
           <Col>
             <Image src={logoImage} alt="logo" width={64} height={64} />
           </Col>
           <Col className="text-center">
             <h1>Sound Hound</h1>
           </Col>
-          <Col>
+          <Col className="text-right">
             <span>Score: 2</span>
           </Col>
         </Row>

@@ -1,3 +1,19 @@
 .app {
+  background: url("../assets/images/heroes-bg.jpg") repeat-x;
+  background-size: cover;
+  animation: moving-bg 60s linear infinite;
 
+  & > * {
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 0 18px 0 rgba(255, 255, 255, 1);
+  }
+}
+
+@keyframes moving-bg {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: calc(100vw - 100%) 0;
+  }
 }
