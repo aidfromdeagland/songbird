@@ -20,20 +20,23 @@ export default function Header() {
             <h1>Sound Hound</h1>
           </Col>
           <Col className="text-right">
-            <span>Score: 2</span>
+            <p>
+              Score:
+              <span className="font-weight-bold text-danger">2</span>
+            </p>
           </Col>
         </Row>
         <Row>
           <Col className="text-center">
             <ButtonGroup>
-              <Button className="btn-outline-secondary bg-dark">All</Button>
-              <Button className="btn-outline-danger bg-dark">
+              <Button className="btn-outline-primary">All</Button>
+              <Button className="btn-outline-danger">
                 <Image src={strIcon} alt="strength" width={45} height={45} />
               </Button>
-              <Button className="btn-outline-success bg-dark">
+              <Button className="btn-outline-success">
                 <Image src={agiIcon} alt="agility" width={45} height={45} />
               </Button>
-              <Button className="btn-outline-info bg-dark">
+              <Button className="btn-outline-info">
                 <Image src={intIcon} alt="intelligence" width={45} height={45} />
               </Button>
             </ButtonGroup>

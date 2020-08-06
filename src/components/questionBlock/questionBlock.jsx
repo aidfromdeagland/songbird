@@ -5,6 +5,7 @@ import {
 } from 'react-bootstrap';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
+import '../../themes-change/rhap-theme.css';
 import sourceImage from '../../assets/images/heroes/npc_dota_hero_abaddon_png.png';
 import frameImage from '../../assets/images/hero_hud_sized.png';
 

@@ -9,14 +9,14 @@ import DescriptionBlock from './descriptionBlock/descriptionBlock';
 export default function App() {
   return (
     <div className="app">
-      <Container className="min-vh-100 justify-content-center d-flex flex-column">
+      <Container>
         <Header />
         <QuestionBlock />
         <Row>
           <VariantsBlock />
           <DescriptionBlock />
         </Row>
-        <Button className="btn-dark mt-1" block>Next</Button>
+        <Button className="mt-1" block>Next</Button>
       </Container>
     </div>
   );

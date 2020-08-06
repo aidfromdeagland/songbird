@@ -1,3 +1,16 @@
 .variantsBlock {
 
+  &__buttons {
+    border-radius: 0.25rem;
+    box-shadow: 0 -15px 10px -10px #D11111;
+  }
+}
+
+@media (max-width: 576px) {
+  .variantsBlock {
+
+    &__buttons {
+      box-shadow: none;
+    }
+  }
 }
