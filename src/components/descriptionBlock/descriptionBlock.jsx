@@ -7,7 +7,7 @@ import './descriptionBlock.scss';
 
 export default function DescriptionBlock() {
   return (
-    <Col lg={8} md={8} sm={8} xs={12} className="descriptionBlock">
+    <Col xl={8} lg={8} md={7} sm={6} xs={12} className="descriptionBlock">
       <Row>
         <Col className="text-center" lg={4} md={4} sm={12} xs={12}>
           <Image className="img-fluid" src={sourceImage} alt="hero" />

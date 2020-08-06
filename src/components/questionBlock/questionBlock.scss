@@ -1,3 +1,31 @@
 .questionBlock {
 
+  &__presentation {
+    position: relative;
+    min-height: 260px;
+    max-width: 290px;
+    margin: 0 auto;
+  }
+
+  &__image {
+    position: absolute;
+    left: 30%;
+    bottom: 10%;
+    width: 55%;
+  }
+
+  &__frame {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+  }
+
+  &__media {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+  }
 }
+

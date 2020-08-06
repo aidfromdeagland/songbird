@@ -7,7 +7,7 @@ import logoImage from '../../assets/images/dota2soundhound.png';
 
 export default function VariantsBlock() {
   return (
-    <Col className="variantsBlock" lg={4} md={4} sm={4} xs={12}>
+    <Col className="variantsBlock" xl={4} lg={4} md={5} sm={6} xs={12}>
       <ButtonGroup className="w-100" vertical>
         <Button className="btn-dark">
           <Image src={logoImage} alt="button logo" width={30} height={30} />

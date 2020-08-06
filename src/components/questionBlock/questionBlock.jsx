@@ -5,17 +5,23 @@ import {
 } from 'react-bootstrap';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
-import sourceImage from '../../assets/images/dota2soundhound.png';
+import sourceImage from '../../assets/images/heroes/npc_dota_hero_abaddon_png.png';
+import frameImage from '../../assets/images/hero_hud_sized.png';
 
 export default function QuestionBlock() {
   return (
     <Row className="questionBlock justify-content-center">
-      <Col lg={3} md={3} sm={4} xs={12} className="text-center">
-        <Image className="img-fluid" src={sourceImage} alt="current" />
+      <Col xl={4} lg={4} md={5} sm={6} xs={12}>
+        <div className="questionBlock__presentation">
+          <Image className="questionBlock__image" src={sourceImage} alt="current hero" />
+          <Image className="questionBlock__frame" src={frameImage} alt="frame" />
+        </div>
       </Col>
-      <Col lg={9} md={9} sm={8} xs={12}>
-        <h3 className="text-center">Magna</h3>
-        <AudioPlayer customAdditionalControls={[]} />
+      <Col xl={8} lg={8} md={7} sm={6} xs={12}>
+        <div className="questionBlock__media">
+          <h3 className="text-center">Magna</h3>
+          <AudioPlayer customAdditionalControls={[]} />
+        </div>
       </Col>
     </Row>
   );
