@@ -12,15 +12,28 @@ export default function DescriptionBlock() {
         <Col className="text-center" lg={4} md={4} sm={12} xs={12}>
           <Image className="img-fluid" src={sourceImage} alt="hero" />
         </Col>
-        <Col lg={8} md={8} sm={12} xs={12}>
+        <Col lg={8} md={8} sm={12} xs={12} className="d-flex flex-column justify-content-center">
           <h3 className="text-center">Magna</h3>
-          <span>Second name</span>
           <AudioPlayer customAdditionalControls={[]} />
         </Col>
       </Row>
       <Row>
         <Col>
-          <span>Description description description description description</span>
+          <p>
+            Primary attribute:
+            {' '}
+            <span>Str</span>
+          </p>
+          <p>
+            Attack type:
+            {' '}
+            <span>Melee</span>
+          </p>
+          <p>
+            Roles:
+            {' '}
+            <span>Nuker, Disabler</span>
+          </p>
         </Col>
       </Row>
     </Col>

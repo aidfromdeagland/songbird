@@ -1,4 +1,10 @@
+@font-face{
+  font-family:'wtcGoudy';
+  src:url("../assets/fonts/OPTIwtcGoudy-Medium.otf") format('opentype');
+}
+
 .app {
+  font-family: "wtcGoudy", Arial, serif;
   background: url("../assets/images/heroes-bg.jpg") repeat-x;
   background-size: cover;
   animation: moving-bg 60s linear infinite;
@@ -8,7 +14,6 @@
   justify-content: center;
 
   & > * {
-    background: rgba(39, 43, 48, 0.98);
     border: 2px solid #1b1e20;
     border-radius: 0.25rem;
     padding-bottom: 15px;
@@ -29,5 +34,29 @@
   .app {
     background: none;
     animation: none;
+  }
+}
+
+@keyframes moving-lava {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@keyframes sizing-lava {
+  0% {
+    background-size: 564px 564px;
+  }
+  50% {
+    background-size: 762px 762px;
+  }
+  100% {
+    background-size: 564px 564px;
   }
 }

@@ -9,7 +9,7 @@ import DescriptionBlock from './descriptionBlock/descriptionBlock';
 export default function App() {
   return (
     <div className="app">
-      <Container>
+      <Container className="bg-dark">
         <Header />
         <QuestionBlock />
         <Row>
