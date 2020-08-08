@@ -18,7 +18,6 @@ class Header extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { dispatch } = this.props;
     return (
       <Row className="header">

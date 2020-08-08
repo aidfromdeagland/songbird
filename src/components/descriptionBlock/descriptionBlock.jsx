@@ -14,7 +14,13 @@ export default function DescriptionBlock() {
         </Col>
         <Col lg={8} md={8} sm={12} xs={12} className="d-flex flex-column justify-content-center">
           <h3 className="text-center">Magna</h3>
-          <AudioPlayer customAdditionalControls={[]} />
+          <AudioPlayer
+            layout="stacked"
+            customControlsSection={['MAIN_CONTROLS', 'VOLUME_CONTROLS']}
+            customProgressBarSection={['PROGRESS_BAR']}
+            showSkipControls
+            showJumpControls={false}
+          />
         </Col>
       </Row>
       <Row>

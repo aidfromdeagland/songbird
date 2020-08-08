@@ -21,42 +21,18 @@
   }
 }
 
-@keyframes moving-bg {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: calc(100vw - 100%) 0;
-  }
-}
-
-@media (max-width: 576px) {
+@media (max-width: 575px) {
   .app {
     background: none;
     animation: none;
   }
 }
 
-@keyframes moving-lava {
+@keyframes moving-bg {
   0% {
     background-position: 0 0;
   }
-  50% {
-    background-position: 50% 50%;
-  }
   100% {
-    background-position: 0 0;
-  }
-}
-
-@keyframes sizing-lava {
-  0% {
-    background-size: 564px 564px;
-  }
-  50% {
-    background-size: 762px 762px;
-  }
-  100% {
-    background-size: 564px 564px;
+    background-position: calc(100vw - 100%) 0;
   }
 }

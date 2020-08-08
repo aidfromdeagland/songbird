@@ -41,6 +41,14 @@
   color: #868686;
 }
 
+.rhap_main-controls-button {
+  color: #868686;
+}
+
+.rhap_volume-controls {
+  padding-right: 0.5rem;
+}
+
 .rhap_volume-button {
   color: #868686;
 }
