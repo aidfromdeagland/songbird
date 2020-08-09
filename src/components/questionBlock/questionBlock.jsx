@@ -10,8 +10,9 @@ import frameImage from '../../assets/images/hero_hud_sized.png';
 import MyAudio from '../myAudio/MyAudio';
 
 function QuestionBlock(props) {
-  const { heroesRound, round } = props;
-  const heroImageUrl = require(`../../assets/images/heroes/selection/${heroesRound[round].name}_png.png`);
+  console.log(props);
+  const { roundPool, round } = props;
+  const heroImageUrl = require(`../../assets/images/heroes/selection/${roundPool[round].name}_png.png`);
 
   return (
     <Row className="questionBlock justify-content-center">
@@ -23,8 +24,8 @@ function QuestionBlock(props) {
       </Col>
       <Col xl={8} lg={8} md={7} sm={6} xs={12}>
         <div className="questionBlock__media">
-          <h3 className="text-center">{heroesRound[round].localized_name.replace(/\w/gi, '*')}</h3>
-          <MyAudio currentHero={heroesRound[round]} />
+          <h3 className="text-center">{roundPool[round].localized_name.replace(/\w/gi, '*')}</h3>
+          <MyAudio currentHero={roundPool[round]} />
         </div>
       </Col>
     </Row>
@@ -32,8 +33,8 @@ function QuestionBlock(props) {
 }
 
 const mapStateToProps = (state) => {
-  const { heroesRound, round } = state;
-  return ({ heroesRound, round });
+  const { roundPool, round } = state;
+  return ({ roundPool, round });
 };
 
 export default connect(mapStateToProps)(QuestionBlock);

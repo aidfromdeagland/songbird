@@ -3,29 +3,24 @@ import { shuffleArray, getSlicedArray } from '../utils/arrayhelpers';
 
 const heroesService = new HeroesService();
 
-const heroesLoadAll = () => {
-  const newPool = shuffleArray(heroesService.getHeroes());
+const heroesLoad = (attr) => {
+  const selectedPool = attr
+    ? heroesService.getHeroesByAttr(attr)
+    : heroesService.getHeroes();
+  const roundPool = getSlicedArray(shuffleArray(selectedPool), 10);
+  const round = 0;
+  const otherHeroes = getSlicedArray(shuffleArray(selectedPool.filter((hero) => hero !== roundPool[round])), 5);
+  const variantsPool = shuffleArray([roundPool[round], ...otherHeroes]);
+  console.log(variantsPool);
   return ({
-    type: 'HEROES_LOAD_ALL',
+    type: 'HEROES_LOAD',
     payload: {
-      heroesPool: newPool,
-      heroesRound: getSlicedArray(shuffleArray(newPool), 10),
+      selectedPool,
+      roundPool,
+      variantsPool,
+      round,
     },
   });
 };
 
-const heroesLoadByAttr = (attr) => {
-  const newPool = shuffleArray(heroesService.getHeroesByAttr(attr));
-  return ({
-    type: 'HEROES_LOAD_BY_ATTR',
-    payload: {
-      heroesPool: newPool,
-      heroesRound: getSlicedArray(shuffleArray(newPool), 10),
-    },
-  });
-};
-
-export {
-  heroesLoadAll,
-  heroesLoadByAttr,
-};
+export { heroesLoad };

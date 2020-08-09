@@ -9,8 +9,7 @@ import strIcon from '../../assets/images/icons/str_symbol.png';
 import agiIcon from '../../assets/images/icons/agi_symbol.png';
 import intIcon from '../../assets/images/icons/int_symbol.png';
 import {
-  heroesLoadAll,
-  heroesLoadByAttr,
+  heroesLoad,
 } from '../../actions';
 
 class Header extends Component {
@@ -39,22 +38,22 @@ class Header extends Component {
           <Row>
             <Col className="text-center">
               <ButtonGroup>
-                <Button className="btn-outline-primary" onClick={() => { dispatch(heroesLoadAll()); }}>All</Button>
+                <Button className="btn-outline-primary" onClick={() => { dispatch(heroesLoad()); }}>All</Button>
                 <Button
                   className="btn-outline-danger"
-                  onClick={() => { dispatch(heroesLoadByAttr('str')); }}
+                  onClick={() => { dispatch(heroesLoad('str')); }}
                 >
                   <Image src={strIcon} alt="strength" width={45} height={45} />
                 </Button>
                 <Button
                   className="btn-outline-success"
-                  onClick={() => { dispatch(heroesLoadByAttr('agi')); }}
+                  onClick={() => { dispatch(heroesLoad('agi')); }}
                 >
                   <Image src={agiIcon} alt="agility" width={45} height={45} />
                 </Button>
                 <Button
                   className="btn-outline-info"
-                  onClick={() => { dispatch(heroesLoadByAttr('int')); }}
+                  onClick={() => { dispatch(heroesLoad('int')); }}
                 >
                   <Image src={intIcon} alt="intelligence" width={45} height={45} />
                 </Button>
