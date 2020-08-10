@@ -28,6 +28,8 @@ class MyAudio extends Component {
 
     return (
       <AudioPlayer
+        autoPlay={false}
+        autoPlayAfterSrcChange={false}
         ref={this.audioPlayer}
         src={heroAudioUrlsMap.recognitionPhrases[audioKeys[currentAudioIndex]]}
         layout="stacked"
@@ -40,12 +42,14 @@ class MyAudio extends Component {
             ? audioKeys.length - 1 : currentAudioIndex - 1;
           this.audioPlayer.current.audio.current.src = heroAudioUrlsMap
             .recognitionPhrases[audioKeys[currentAudioIndex]];
+          this.audioPlayer.current.audio.current.play();
         }}
         onClickNext={() => {
           currentAudioIndex = currentAudioIndex >= audioKeys.length - 1
             ? 0 : currentAudioIndex + 1;
           this.audioPlayer.current.audio.current.src = heroAudioUrlsMap
             .recognitionPhrases[audioKeys[currentAudioIndex]];
+          this.audioPlayer.current.audio.current.play();
         }}
       />
     );

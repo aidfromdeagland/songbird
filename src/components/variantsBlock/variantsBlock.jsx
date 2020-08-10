@@ -5,6 +5,7 @@ import {
 } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import heroesMap from '../../dota2data/heroesMap';
+import {heroSelected} from '../../actions';
 
 const soundsPathPrefix = 'assets/sounds/heroes';
 const localAudio = new Audio();
@@ -20,6 +21,7 @@ function VariantsBlock(props) {
     positivePhrase: require(`../../${soundsPathPrefix}/${heroesMap[roundPool[round].name]}_win_01.mp3`),
   };
   const negativeAudioKeys = Object.keys(heroAudioUrlsMap.negativePhrases);
+  const { dispatch } = props;
 
   return (
     <Col className="variantsBlock" xl={4} lg={4} md={5} sm={6} xs={12}>
@@ -31,6 +33,7 @@ function VariantsBlock(props) {
               className="variantsBlock__button"
               key={variantsPool[index].id}
               onClick={() => {
+                dispatch(heroSelected(variantsPool[index]));
                 if (variantsPool[index].id === roundPool[round].id) {
                   if (localAudio.src !== heroAudioUrlsMap.positivePhrase) {
                     localAudio.src = heroAudioUrlsMap.positivePhrase;
@@ -56,8 +59,12 @@ function VariantsBlock(props) {
 }
 
 const mapStateToProps = (state) => {
-  const { roundPool, variantsPool, round } = state;
-  return ({ roundPool, variantsPool, round });
+  const {
+    roundPool, variantsPool, round,
+  } = state;
+  return ({
+    roundPool, variantsPool, round,
+  });
 };
 
 export default connect(mapStateToProps)(VariantsBlock);

@@ -1,4 +1,5 @@
 import HeroesService from '../services/heroesService';
+import { heroTemplate } from '../dota2data/heroes';
 import { shuffleArray, getSlicedArray } from '../utils/arrayhelpers';
 
 const heroesService = new HeroesService();
@@ -11,6 +12,7 @@ const heroesLoad = (attr) => {
   const round = 0;
   const otherHeroes = getSlicedArray(shuffleArray(selectedPool.filter((hero) => hero !== roundPool[round])), 5);
   const variantsPool = shuffleArray([roundPool[round], ...otherHeroes]);
+  const heroSelected = heroTemplate;
   console.log(variantsPool);
   return ({
     type: 'HEROES_LOAD',
@@ -19,8 +21,14 @@ const heroesLoad = (attr) => {
       roundPool,
       variantsPool,
       round,
+      heroSelected,
     },
   });
 };
 
-export { heroesLoad };
+const heroSelected = (heroObj) => ({
+  type: 'HERO_SELECTED',
+  payload: heroObj,
+});
+
+export { heroesLoad, heroSelected };

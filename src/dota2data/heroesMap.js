@@ -118,6 +118,7 @@ const heroesMap = {
   npc_dota_hero_void_spirit: 'voidspir',
   npc_dota_hero_snapfire: 'snapfire',
   npc_dota_hero_mars: 'mars',
+  npc_dota_hero_default: 'default',
 };
 
 export default heroesMap;

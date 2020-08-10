@@ -239,4 +239,9 @@ const heroes = [{
   id: 129, name: 'npc_dota_hero_mars', localized_name: 'Mars', primary_attr: 'str', attack_type: 'Melee', roles: ['Carry', 'Initiator', 'Disabler', 'Durable'], legs: 2,
 }];
 
+const heroTemplate = {
+  id: 999, name: 'npc_dota_hero_default', localized_name: '', primary_attr: '', attack_type: '', roles: [], legs: 2,
+};
+
 export default heroes;
+export { heroTemplate };

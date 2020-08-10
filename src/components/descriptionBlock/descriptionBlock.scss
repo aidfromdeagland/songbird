@@ -2,6 +2,9 @@
 
   &__image {
     width: 100%;
+    max-width: 256px;
     height: auto;
+    border: 1px solid #868686;
+    border-radius: 0.25rem;
   }
 }

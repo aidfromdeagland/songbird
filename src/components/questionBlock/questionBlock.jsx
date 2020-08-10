@@ -7,7 +7,7 @@ import 'react-h5-audio-player/lib/styles.css';
 import '../../themes-change/rhap-theme.css';
 import { connect } from 'react-redux';
 import frameImage from '../../assets/images/hero_hud_sized.png';
-import MyAudio from '../myAudio/MyAudio';
+import MyAudio from '../myAudio/myAudio';
 
 function QuestionBlock(props) {
   console.log(props);
