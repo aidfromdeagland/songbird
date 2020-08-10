@@ -9,7 +9,7 @@ import strIcon from '../../assets/images/icons/str_symbol.png';
 import agiIcon from '../../assets/images/icons/agi_symbol.png';
 import intIcon from '../../assets/images/icons/int_symbol.png';
 import {
-  heroesLoad,
+  heroesLoaded,
 } from '../../actions';
 
 class Header extends Component {
@@ -17,7 +17,7 @@ class Header extends Component {
   }
 
   render() {
-    const { dispatch } = this.props;
+    const { dispatch, score, isCorrectAnswer } = this.props;
     return (
       <Row className="header">
         <Col>
@@ -29,31 +29,41 @@ class Header extends Component {
               <h1>Sound Hound</h1>
             </Col>
             <Col className="text-right">
-              <p>
-                Score:
-                <span className="font-weight-bold text-danger">2</span>
-              </p>
+              <span className={isCorrectAnswer ? 'header__score header__score_updated' : 'header__score'}>{score}</span>
             </Col>
           </Row>
           <Row>
             <Col className="text-center">
               <ButtonGroup>
-                <Button className="btn-outline-primary" onClick={() => { dispatch(heroesLoad()); }}>All</Button>
+                <Button
+                  className="btn-outline-primary"
+                  onClick={() => {
+                    dispatch(heroesLoaded());
+                  }}
+                >
+                  All
+                </Button>
                 <Button
                   className="btn-outline-danger"
-                  onClick={() => { dispatch(heroesLoad('str')); }}
+                  onClick={() => {
+                    dispatch(heroesLoaded('str'));
+                  }}
                 >
                   <Image src={strIcon} alt="strength" width={45} height={45} />
                 </Button>
                 <Button
                   className="btn-outline-success"
-                  onClick={() => { dispatch(heroesLoad('agi')); }}
+                  onClick={() => {
+                    dispatch(heroesLoaded('agi'));
+                  }}
                 >
                   <Image src={agiIcon} alt="agility" width={45} height={45} />
                 </Button>
                 <Button
                   className="btn-outline-info"
-                  onClick={() => { dispatch(heroesLoad('int')); }}
+                  onClick={() => {
+                    dispatch(heroesLoaded('int'));
+                  }}
                 >
                   <Image src={intIcon} alt="intelligence" width={45} height={45} />
                 </Button>
@@ -66,4 +76,9 @@ class Header extends Component {
   }
 }
 
-export default connect()(Header);
+const mapStateToProps = (state) => {
+  const { score, isCorrectAnswer } = state;
+  return ({ score, isCorrectAnswer });
+};
+
+export default connect(mapStateToProps)(Header);

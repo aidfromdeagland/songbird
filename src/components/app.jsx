@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './app.scss';
-import { Container, Row, Button } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 
 import Header from './header/header';
 import QuestionBlock from './questionBlock/questionBlock';
 import VariantsBlock from './variantsBlock/variantsBlock';
 import DescriptionBlock from './descriptionBlock/descriptionBlock';
+import NextButton from './nextButton/nextButton';
 
 class App extends Component {
   componentDidMount() {
@@ -21,7 +22,7 @@ class App extends Component {
             <VariantsBlock />
             <DescriptionBlock />
           </Row>
-          <Button className="mt-1" block>Next</Button>
+          <NextButton />
         </Container>
       </div>
     );

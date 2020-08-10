@@ -3,33 +3,62 @@ import { heroTemplate } from '../dota2data/heroes';
 import { getSlicedArray, shuffleArray } from '../utils/arrayhelpers';
 
 const heroesService = new HeroesService();
+const initialCorrectAnswerCost = 50;
+const incorrectAnswerPenalty = 10;
 const selectedPool = heroesService.getHeroes();
 const roundPool = getSlicedArray(shuffleArray(selectedPool), 10);
 const round = 0;
-const otherHeroes = getSlicedArray(shuffleArray(selectedPool.filter((hero) => hero !== roundPool[round])), 5);
-const variantsPool = shuffleArray([roundPool[round], ...otherHeroes]);
+const variantsPool = heroesService.getVariantsHeroes(selectedPool, roundPool[round]);
 const initialState = ({
   selectedPool,
   roundPool,
   variantsPool,
   round,
   heroSelected: heroTemplate,
+  isCorrectAnswer: false,
+  selectedVariants: [],
+  score: 0,
 });
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'HEROES_LOAD':
+    case 'HEROES_LOADED':
       return {
         ...state,
         selectedPool: action.payload.selectedPool,
         roundPool: action.payload.roundPool,
         variantsPool: action.payload.variantsPool,
-        round: action.payload.round,
+        selectedVariants: [],
+        isCorrectAnswer: false,
+        heroSelected: heroTemplate,
+        score: 0,
+        round: 0,
       };
     case 'HERO_SELECTED':
       return {
         ...state,
         heroSelected: action.payload,
+      };
+    case 'ANSWERED_CORRECT': {
+      return {
+        ...state,
+        isCorrectAnswer: true,
+        score: state.score + initialCorrectAnswerCost - incorrectAnswerPenalty * state.selectedVariants.length,
+      };
+    }
+    case 'ADD_CLICKED_VARIANT':
+      return {
+        ...state,
+        selectedVariants: [...state.selectedVariants, action.payload],
+      };
+    case 'GO_NEXT_ROUND':
+      return {
+        ...state,
+        round: state.round + 1,
+        variantsPool: heroesService.getVariantsHeroes(state.selectedPool, state.roundPool[state.round + 1]),
+        selectedVariants: [],
+        isCorrectAnswer: false,
+        heroSelected: heroTemplate,
       };
     default: {
       return state;

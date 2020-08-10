@@ -3,32 +3,46 @@ import { heroTemplate } from '../dota2data/heroes';
 import { shuffleArray, getSlicedArray } from '../utils/arrayhelpers';
 
 const heroesService = new HeroesService();
+const initialRound = 0;
 
-const heroesLoad = (attr) => {
+const heroesLoaded = (attr) => {
   const selectedPool = attr
     ? heroesService.getHeroesByAttr(attr)
     : heroesService.getHeroes();
   const roundPool = getSlicedArray(shuffleArray(selectedPool), 10);
-  const round = 0;
-  const otherHeroes = getSlicedArray(shuffleArray(selectedPool.filter((hero) => hero !== roundPool[round])), 5);
-  const variantsPool = shuffleArray([roundPool[round], ...otherHeroes]);
-  const heroSelected = heroTemplate;
-  console.log(variantsPool);
+  const otherHeroes = getSlicedArray(shuffleArray(selectedPool.filter((hero) => hero !== roundPool[initialRound])), 5);
+  const variantsPool = shuffleArray([roundPool[initialRound], ...otherHeroes]);
+
   return ({
-    type: 'HEROES_LOAD',
+    type: 'HEROES_LOADED',
     payload: {
       selectedPool,
       roundPool,
       variantsPool,
-      round,
-      heroSelected,
+      round: initialRound,
+      score: 0,
     },
   });
 };
 
-const heroSelected = (heroObj) => ({
-  type: 'HERO_SELECTED',
-  payload: heroObj,
+const goNextRound = () => ({
+  type: 'GO_NEXT_ROUND',
 });
 
-export { heroesLoad, heroSelected };
+const addClickedVariant = (id) => ({
+  type: 'ADD_CLICKED_VARIANT',
+  payload: id,
+});
+
+const answeredCorrect = () => ({
+  type: 'ANSWERED_CORRECT',
+});
+
+const heroSelected = (heroObj) => ({
+  type: 'HERO_SELECTED',
+  payload: heroObj || heroTemplate,
+});
+
+export {
+  heroesLoaded, heroSelected, addClickedVariant, answeredCorrect, goNextRound,
+};

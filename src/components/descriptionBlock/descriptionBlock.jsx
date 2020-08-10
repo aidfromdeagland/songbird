@@ -5,9 +5,14 @@ import MyAudio from '../myAudio/myAudio';
 import 'react-h5-audio-player/lib/styles.css';
 import './descriptionBlock.scss';
 
+const attrShortsMap = {
+  str: 'strength',
+  agi: 'agility',
+  int: 'intellect',
+};
+
 function DescriptionBlock(props) {
   const { heroSelected } = props;
-  console.log(props);
   const heroImageUrl = require(`../../assets/images/heroes/preview/${heroSelected.name}_png.png`);
 
   return (
@@ -17,26 +22,28 @@ function DescriptionBlock(props) {
           <Image className="descriptionBlock__image" src={heroImageUrl} alt="hero" />
         </Col>
         <Col lg={8} md={8} sm={12} xs={12} className="d-flex flex-column justify-content-center">
-          <h3 className="text-center">{heroSelected.localized_name}</h3>
+          <h4 className=" text_center descriptionBlock__text descriptionBlock__text_whitespaced">
+            {heroSelected.localized_name}
+          </h4>
           <MyAudio currentHero={heroSelected} />
         </Col>
       </Row>
       <Row>
         <Col>
-          <p>
+          <p className="descriptionBlock__text">
             Primary attribute:
             {' '}
-            <span>{heroSelected.primary_attr}</span>
+            {attrShortsMap[heroSelected.primary_attr]}
           </p>
-          <p>
+          <p className="descriptionBlock__text">
             Attack type:
             {' '}
-            <span>{heroSelected.attack_type}</span>
+            {heroSelected.attack_type.toLowerCase()}
           </p>
-          <p>
+          <p className="descriptionBlock__text">
             Roles:
             {' '}
-            { heroSelected.roles.map((role) => <span key={role}>{` ${role}`}</span>) }
+            {heroSelected.roles.join(', ').toLowerCase()}
           </p>
         </Col>
       </Row>
