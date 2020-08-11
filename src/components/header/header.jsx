@@ -21,14 +21,14 @@ class Header extends Component {
     return (
       <Row className="header">
         <Col>
-          <Row className="justify-content-between">
-            <Col>
+          <Row>
+            <Col className="d-flex align-items-center">
               <Image src={logoImage} alt="logo" width={64} height={64} />
             </Col>
-            <Col className="text-center">
+            <Col className="d-flex justify-content-center align-items-center">
               <h1>Sound Hound</h1>
             </Col>
-            <Col className="text-right">
+            <Col className="d-flex justify-content-end align-items-center">
               <span className={isCorrectAnswer ? 'header__score header__score_updated' : 'header__score'}>{score}</span>
             </Col>
           </Row>
@@ -38,7 +38,7 @@ class Header extends Component {
                 <Button
                   className="btn-outline-primary"
                   onClick={() => {
-                    dispatch(heroesLoaded());
+                    dispatch(heroesLoaded(''));
                   }}
                 >
                   All

@@ -14,7 +14,7 @@ class MyAudio extends Component {
   }
 
   render() {
-    const { currentHero } = this.props;
+    const { currentHero, isCorrectAnswer } = this.props;
     const heroAudioUrlsMap = {
       recognitionPhrases: {
         spawn: require(`../../${soundsPathPrefix}/${heroesMap[currentHero.name]}_spawn_03.mp3`),
@@ -25,6 +25,9 @@ class MyAudio extends Component {
 
     let currentAudioIndex = 0;
     const audioKeys = Object.keys(heroAudioUrlsMap.recognitionPhrases);
+    if (isCorrectAnswer) {
+      this.audioPlayer.current.audio.current.pause();
+    }
 
     return (
       <AudioPlayer
@@ -57,8 +60,12 @@ class MyAudio extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { heroesPool, heroesRound, round } = state;
-  return ({ heroesPool, heroesRound, round });
+  const {
+    heroesPool, heroesRound, round, isCorrectAnswer,
+  } = state;
+  return ({
+    heroesPool, heroesRound, round, isCorrectAnswer,
+  });
 };
 
 export default connect(mapStateToProps)(MyAudio);

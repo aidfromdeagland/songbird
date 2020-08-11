@@ -14,7 +14,7 @@ const localAudio = new Audio();
 
 function VariantsBlock(props) {
   const {
-    dispatch, roundPool, variantsPool, round, selectedVariants, isCorrectAnswer, score,
+    dispatch, roundPool, variantsPool, round, selectedVariants, isCorrectAnswer,
   } = props;
   const heroAudioUrlsMap = {
     negativePhrases: {
@@ -46,17 +46,12 @@ function VariantsBlock(props) {
                 dispatch(heroSelected(hero));
                 if (!isCorrectAnswer) {
                   if (hero.id === roundPool[round].id) {
-                    if (round < roundPool.length - 1) {
-                      dispatch(answeredCorrect());
-                      if (localAudio.src !== heroAudioUrlsMap.positivePhrase) {
-                        localAudio.src = heroAudioUrlsMap.positivePhrase;
-                      }
-                    } else {
-                      alert(`${round}, your score: ${score}`);
-                      dispatch(heroesLoaded());
-                    }
+                    dispatch(answeredCorrect());
                     if (localAudio.src !== heroAudioUrlsMap.positivePhrase) {
                       localAudio.src = heroAudioUrlsMap.positivePhrase;
+                    }
+                    if (round < roundPool.length - 1) {
+                      localAudio.play();
                     }
                   } else {
                     const negativeAnswerIndex = Math.floor(Math.random() * negativeAudioKeys.length);
@@ -64,11 +59,11 @@ function VariantsBlock(props) {
                     if (localAudio.src !== currentNegativeSrc) {
                       localAudio.src = currentNegativeSrc;
                     }
+                    localAudio.play();
                   }
                   if (!selectedVariants.includes(hero.id)) {
                     dispatch(addClickedVariant(hero.id));
                   }
-                  localAudio.play();
                 }
               }}
             >
@@ -90,10 +85,10 @@ function VariantsBlock(props) {
 
 const mapStateToProps = (state) => {
   const {
-    roundPool, variantsPool, round, selectedVariants, isCorrectAnswer, score,
+    roundPool, variantsPool, round, selectedVariants, isCorrectAnswer,
   } = state;
   return ({
-    roundPool, variantsPool, round, selectedVariants, isCorrectAnswer, score,
+    roundPool, variantsPool, round, selectedVariants, isCorrectAnswer,
   });
 };
 

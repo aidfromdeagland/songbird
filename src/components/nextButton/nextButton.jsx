@@ -7,11 +7,12 @@ function NextButton(props) {
   const {
     dispatch, roundPool, round, isCorrectAnswer,
   } = props;
+  const isValidButton = isCorrectAnswer && round < roundPool.length - 1;
   return (
     <Button
-      className="mt-1"
+      className={isValidButton ? 'mt-1 btn-success' : 'mt-1'}
       block
-      disabled={!isCorrectAnswer || round >= roundPool.length - 1}
+      disabled={!isValidButton}
       onClick={() => {
         if (round < roundPool.length - 1) {
           dispatch(goNextRound());

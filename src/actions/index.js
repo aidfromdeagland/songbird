@@ -16,6 +16,7 @@ const heroesLoaded = (attr) => {
   return ({
     type: 'HEROES_LOADED',
     payload: {
+      activeAttr: attr,
       selectedPool,
       roundPool,
       variantsPool,

@@ -11,6 +11,7 @@ import MyAudio from '../myAudio/myAudio';
 
 function QuestionBlock(props) {
   const { roundPool, round, isCorrectAnswer } = props;
+  console.log(`tip: ${roundPool[round].localized_name}`);
   const heroImageUrl = require(`../../assets/images/heroes/selection/${roundPool[round].name}_png.png`);
 
   return (
