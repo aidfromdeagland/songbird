@@ -4,9 +4,8 @@ import {
   ButtonGroup, Button, Image, Col,
 } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import heroesMap from '../../dota2data/heroesMap';
 import {
-  heroSelected, addClickedVariant, answeredCorrect, heroesLoaded,
+  heroSelected, addClickedVariant, answeredCorrect,
 } from '../../actions';
 
 const soundsPathPrefix = 'assets/sounds/heroes';
@@ -16,13 +15,15 @@ function VariantsBlock(props) {
   const {
     dispatch, roundPool, variantsPool, round, selectedVariants, isCorrectAnswer,
   } = props;
+  const currentHero = roundPool[round];
   const heroAudioUrlsMap = {
     negativePhrases: {
-      death: require(`../../${soundsPathPrefix}/${heroesMap[roundPool[round].name]}_death_01.mp3`),
-      lose: require(`../../${soundsPathPrefix}/${heroesMap[roundPool[round].name]}_lose_01.mp3`),
+      death: require(`../../${soundsPathPrefix}/${currentHero.db_short}_death_01.mp3`),
+      lose: require(`../../${soundsPathPrefix}/${currentHero.db_short}_lose_01.mp3`),
     },
-    positivePhrase: require(`../../${soundsPathPrefix}/${heroesMap[roundPool[round].name]}_win_01.mp3`),
+    positivePhrase: require(`../../${soundsPathPrefix}/${currentHero.db_short}_win_01.mp3`),
   };
+
   const negativeAudioKeys = Object.keys(heroAudioUrlsMap.negativePhrases);
 
   return (

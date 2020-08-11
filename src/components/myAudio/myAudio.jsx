@@ -3,7 +3,6 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import '../../themes-change/rhap-theme.css';
 import { connect } from 'react-redux';
-import heroesMap from '../../dota2data/heroesMap';
 
 const soundsPathPrefix = 'assets/sounds/heroes';
 
@@ -17,9 +16,9 @@ class MyAudio extends Component {
     const { currentHero, isCorrectAnswer } = this.props;
     const heroAudioUrlsMap = {
       recognitionPhrases: {
-        spawn: require(`../../${soundsPathPrefix}/${heroesMap[currentHero.name]}_spawn_03.mp3`),
-        kill: require(`../../${soundsPathPrefix}/${heroesMap[currentHero.name]}_kill_01.mp3`),
-        respawn: require(`../../${soundsPathPrefix}/${heroesMap[currentHero.name]}_respawn_03.mp3`),
+        spawn: require(`../../${soundsPathPrefix}/${currentHero.db_short}_spawn_03.mp3`),
+        kill: require(`../../${soundsPathPrefix}/${currentHero.db_short}_kill_01.mp3`),
+        respawn: require(`../../${soundsPathPrefix}/${currentHero.db_short}_respawn_03.mp3`),
       },
     };
 
