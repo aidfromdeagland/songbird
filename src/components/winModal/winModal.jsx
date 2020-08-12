@@ -3,7 +3,7 @@ import {
   Modal, ModalBody, ModalTitle, ModalFooter, Button,
 } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { heroesLoaded } from '../../actions';
+import { heroesLoaded } from '../../redux/actions/actions';
 import winAudio from '../../assets/sounds/common/roshan_end.mp3';
 import ownageWinAudio from '../../assets/sounds/common/announcer_ownage.mp3';
 import './winModal.scss';

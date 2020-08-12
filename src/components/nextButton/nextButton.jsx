@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { goNextRound } from '../../actions';
+import { goNextRound } from '../../redux/actions/actions';
 
 function NextButton(props) {
   const {
-    dispatch, roundPool, round, isCorrectAnswer,
+    dispatch, selectedPool, roundPool, round, isCorrectAnswer,
   } = props;
   const isValidButton = isCorrectAnswer && round < roundPool.length - 1;
   return (
@@ -15,7 +15,7 @@ function NextButton(props) {
       disabled={!isValidButton}
       onClick={() => {
         if (round < roundPool.length - 1) {
-          dispatch(goNextRound());
+          dispatch(goNextRound(selectedPool, roundPool, round));
         }
       }}
     >
@@ -25,8 +25,12 @@ function NextButton(props) {
 }
 
 const mapStateToProps = (state) => {
-  const { isCorrectAnswer, roundPool, round } = state;
-  return ({ isCorrectAnswer, roundPool, round });
+  const {
+    isCorrectAnswer, selectedPool, roundPool, round,
+  } = state;
+  return ({
+    isCorrectAnswer, selectedPool, roundPool, round,
+  });
 };
 
 export default connect(mapStateToProps)(NextButton);

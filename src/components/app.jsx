@@ -11,23 +11,33 @@ import NextButton from './nextButton/nextButton';
 import WinModal from './winModal/winModal';
 
 function App(props) {
-  const { roundPool, round, isCorrectAnswer } = props;
+  const {
+    roundPool, round, isCorrectAnswer, isInitLaunch,
+  } = props;
 
   return (
     <div className="app">
       <Container className="bg-dark">
         <Header />
-        <ProgressBar
-          now={((isCorrectAnswer ? round + 1 : round) / roundPool.length) * 100}
-          striped
-          animated
-        />
-        <QuestionBlock />
-        <Row>
-          <VariantsBlock />
-          <DescriptionBlock />
-        </Row>
-        <NextButton />
+        {
+          isInitLaunch
+            ? null
+            : (
+              <>
+                <ProgressBar
+                  now={((isCorrectAnswer ? round + 1 : round) / roundPool.length) * 100}
+                  striped
+                  animated
+                />
+                <QuestionBlock />
+                <Row>
+                  <VariantsBlock />
+                  <DescriptionBlock />
+                </Row>
+                <NextButton />
+              </>
+            )
+}
       </Container>
       <WinModal />
     </div>
@@ -35,8 +45,12 @@ function App(props) {
 }
 
 const mapStateToProps = (state) => {
-  const { roundPool, round, isCorrectAnswer } = state;
-  return ({ roundPool, round, isCorrectAnswer });
+  const {
+    roundPool, round, isCorrectAnswer, isInitLaunch,
+  } = state;
+  return ({
+    roundPool, round, isCorrectAnswer, isInitLaunch,
+  });
 };
 
 export default connect(mapStateToProps)(App);

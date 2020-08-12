@@ -5,15 +5,15 @@ import {
 } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import {
-  heroSelected, addClickedVariant, answeredCorrect,
-} from '../../actions';
+  heroSelected, addIncorrectVariant, answeredCorrect,
+} from '../../redux/actions/actions';
 
 const soundsPathPrefix = 'assets/sounds/heroes';
 const localAudio = new Audio();
 
 function VariantsBlock(props) {
   const {
-    dispatch, roundPool, variantsPool, round, selectedVariants, isCorrectAnswer,
+    dispatch, roundPool, variantsPool, round, incorrectVariants, isCorrectAnswer,
   } = props;
   const currentHero = roundPool[round];
   const heroAudioUrlsMap = {
@@ -34,10 +34,11 @@ function VariantsBlock(props) {
           const correctClassName = 'variantsBlock__button_correct';
           const incorrectClassName = 'variantsBlock__button_incorrect';
           let buttonClassName = 'variantsBlock__button ';
-          if (selectedVariants.includes(hero.id)) {
-            buttonClassName += hero.id === roundPool[round].id
-              ? correctClassName
-              : incorrectClassName;
+          if (incorrectVariants.includes(hero.id)) {
+            buttonClassName += incorrectClassName;
+          }
+          if (isCorrectAnswer && hero.id === roundPool[round].id) {
+            buttonClassName += correctClassName;
           }
           return (
             <Button
@@ -47,23 +48,22 @@ function VariantsBlock(props) {
                 dispatch(heroSelected(hero));
                 if (!isCorrectAnswer) {
                   if (hero.id === roundPool[round].id) {
-                    dispatch(answeredCorrect());
+                    dispatch(answeredCorrect(incorrectVariants.length));
                     if (localAudio.src !== heroAudioUrlsMap.positivePhrase) {
                       localAudio.src = heroAudioUrlsMap.positivePhrase;
                     }
                     if (round < roundPool.length - 1) {
                       localAudio.play();
                     }
-                  } else {
+                  } else if (!incorrectVariants.includes(hero.id)) {
                     const negativeAnswerIndex = Math.floor(Math.random() * negativeAudioKeys.length);
-                    const currentNegativeSrc = heroAudioUrlsMap.negativePhrases[negativeAudioKeys[negativeAnswerIndex]];
+                    const currentNegativeSrc = heroAudioUrlsMap
+                      .negativePhrases[negativeAudioKeys[negativeAnswerIndex]];
                     if (localAudio.src !== currentNegativeSrc) {
                       localAudio.src = currentNegativeSrc;
                     }
+                    dispatch(addIncorrectVariant(hero.id));
                     localAudio.play();
-                  }
-                  if (!selectedVariants.includes(hero.id)) {
-                    dispatch(addClickedVariant(hero.id));
                   }
                 }
               }}
@@ -86,10 +86,10 @@ function VariantsBlock(props) {
 
 const mapStateToProps = (state) => {
   const {
-    roundPool, variantsPool, round, selectedVariants, isCorrectAnswer,
+    roundPool, variantsPool, round, incorrectVariants, isCorrectAnswer,
   } = state;
   return ({
-    roundPool, variantsPool, round, selectedVariants, isCorrectAnswer,
+    roundPool, variantsPool, round, incorrectVariants, isCorrectAnswer,
   });
 };
 
