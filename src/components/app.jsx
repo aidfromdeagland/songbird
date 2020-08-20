@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './app.scss';
-import { Container, Row, ProgressBar } from 'react-bootstrap';
+import {
+  Container, Row, ProgressBar, Spinner,
+} from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import Header from './header/header';
-import QuestionBlock from './questionBlock/questionBlock';
-import VariantsBlock from './variantsBlock/variantsBlock';
-import DescriptionBlock from './descriptionBlock/descriptionBlock';
 import NextButton from './nextButton/nextButton';
 import WinModal from './winModal/winModal';
+
+const QuestionBlock = React.lazy(() => import('./questionBlock/questionBlock'));
+const VariantsBlock = React.lazy(() => import('./variantsBlock/variantsBlock'));
+const DescriptionBlock = React.lazy(() => import('./descriptionBlock/descriptionBlock'));
 
 function App(props) {
   const {
@@ -24,17 +27,26 @@ function App(props) {
             ? null
             : (
               <>
-                <ProgressBar
-                  now={((isCorrectAnswer ? round + 1 : round) / roundPool.length) * 100}
-                  striped
-                  animated
-                />
-                <QuestionBlock />
-                <Row>
-                  <VariantsBlock />
-                  <DescriptionBlock />
-                </Row>
-                <NextButton />
+                <Suspense fallback={(
+                  <div className="text-center p-2">
+                    <Spinner animation="border" role="status">
+                      <span className="sr-only">Loading...</span>
+                    </Spinner>
+                  </div>
+                )}
+                >
+                  <ProgressBar
+                    now={((isCorrectAnswer ? round + 1 : round) / roundPool.length) * 100}
+                    striped
+                    animated
+                  />
+                  <QuestionBlock />
+                  <Row>
+                    <VariantsBlock />
+                    <DescriptionBlock />
+                  </Row>
+                  <NextButton />
+                </Suspense>
               </>
             )
 }
