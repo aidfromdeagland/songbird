@@ -8,6 +8,7 @@ import '../../themes-change/rhap-theme.css';
 import { connect } from 'react-redux';
 import frameImage from '../../assets/images/hero_hud_sized.png';
 import MyAudio from '../myAudio/myAudio';
+import stubImageUrl from '../../assets/images/question.png';
 
 function QuestionBlock(props) {
   const { roundPool, round, isCorrectAnswer } = props;
@@ -19,7 +20,11 @@ function QuestionBlock(props) {
     <Row className="questionBlock justify-content-center">
       <Col xl={4} lg={4} md={5} sm={6} xs={12}>
         <div className="questionBlock__presentation">
-          {isCorrectAnswer ? <Image className="questionBlock__image" src={heroImageUrl} alt="current hero" /> : null }
+          <Image
+            className={isCorrectAnswer ? 'questionBlock__image' : 'questionBlock__image questionBlock__image_stub'}
+            src={isCorrectAnswer ? heroImageUrl : stubImageUrl}
+            alt="current hero"
+          />
           <Image className="questionBlock__frame" src={frameImage} alt="frame" />
         </div>
       </Col>

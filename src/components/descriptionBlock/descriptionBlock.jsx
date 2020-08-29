@@ -12,7 +12,7 @@ const attrShortsMap = {
 };
 
 function DescriptionBlock(props) {
-  const { heroSelected } = props;
+  const { heroSelected, isCorrectAnswer, incorrectVariants } = props;
   const heroImageUrl = require(`../../assets/images/heroes/preview/${heroSelected.name}_png.png`);
 
   return (
@@ -29,31 +29,41 @@ function DescriptionBlock(props) {
         </Col>
       </Row>
       <Row>
-        <Col>
-          <p className="descriptionBlock__text">
-            Primary attribute:
-            {' '}
-            {attrShortsMap[heroSelected.primary_attr]}
-          </p>
-          <p className="descriptionBlock__text">
-            Attack type:
-            {' '}
-            {heroSelected.attack_type.toLowerCase()}
-          </p>
-          <p className="descriptionBlock__text">
-            Roles:
-            {' '}
-            {heroSelected.roles.join(', ').toLowerCase()}
-          </p>
-        </Col>
+        { isCorrectAnswer || incorrectVariants.length
+          ? (
+            <Col>
+              <p className="descriptionBlock__text">
+                Primary attribute:
+                {' '}
+                {attrShortsMap[heroSelected.primary_attr]}
+              </p>
+              <p className="descriptionBlock__text">
+                Attack type:
+                {' '}
+                {heroSelected.attack_type.toLowerCase()}
+              </p>
+              <p className="descriptionBlock__text">
+                Roles:
+                {' '}
+                {heroSelected.roles.join(', ').toLowerCase()}
+              </p>
+            </Col>
+          )
+          : (
+            <p className="descriptionBlock__text text-center text-danger">
+              play the hero
+              {'\''}
+              s voice via main player and choose the correct hero among all variants
+            </p>
+          )}
       </Row>
     </Col>
   );
 }
 
 const mapStateToProps = (state) => {
-  const { heroSelected } = state;
-  return ({ heroSelected });
+  const { heroSelected, isCorrectAnswer, incorrectVariants } = state;
+  return ({ heroSelected, isCorrectAnswer, incorrectVariants });
 };
 
 export default connect(mapStateToProps)(DescriptionBlock);

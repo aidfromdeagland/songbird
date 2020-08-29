@@ -14,6 +14,10 @@
     bottom: 10%;
     width: 55%;
     animation: blink-1 1s both, image-chaotic-moving 11s infinite both;
+
+    &_stub {
+      bottom: 15%;
+    }
   }
 
   &__frame {
