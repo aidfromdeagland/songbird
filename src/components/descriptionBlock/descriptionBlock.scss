@@ -1,0 +1,28 @@
+.descriptionBlock {
+
+  &__image {
+    width: 100%;
+    max-width: 256px;
+    height: auto;
+    border: 1px solid #868686;
+    border-radius: 0.25rem;
+  }
+
+  &__text {
+    word-spacing: 0.2rem;
+
+    &:first-of-type {
+      margin-top: 1rem;
+    }
+
+    &_whitespaced {
+      white-space: pre-wrap;
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .descriptionBlock {
+    margin-top: 1rem;
+  }
+}

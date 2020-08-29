@@ -1,0 +1,38 @@
+@font-face{
+  font-family:'wtcGoudy';
+  src:url("../assets/fonts/OPTIwtcGoudy-Medium.otf") format('opentype');
+}
+
+.app {
+  font-family: "wtcGoudy", Arial, serif;
+  background: url("../assets/images/heroes-bg.jpg") repeat-x;
+  background-size: cover;
+  animation: moving-bg 60s linear infinite;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  & > * {
+    border: 2px solid #1b1e20;
+    border-radius: 0.25rem;
+    padding-bottom: 15px;
+    padding-top: 15px;
+  }
+}
+
+@media (max-width: 575px) {
+  .app {
+    background: none;
+    animation: none;
+  }
+}
+
+@keyframes moving-bg {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: calc(100vw - 100%) 0;
+  }
+}

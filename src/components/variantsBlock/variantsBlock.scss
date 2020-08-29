@@ -1,0 +1,55 @@
+.variantsBlock {
+
+  &__buttons {
+    border-radius: 0.25rem;
+    box-shadow: 0 -15px 10px -10px #D11111;
+  }
+
+  &__button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-right: 1.5rem;
+
+    &_incorrect:after {
+      position: absolute;
+      content: '';
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1rem;
+      height: 1rem;
+      background: url("../../assets/images/icons/stop_off.png") no-repeat center;
+      background-size: contain;
+    }
+
+    &_correct:after {
+      position: absolute;
+      content: '';
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1rem;
+      height: 1rem;
+      background: url("../../assets/images/icons/lvl_up_on.png") no-repeat center;
+      background-size: contain;
+    }
+  }
+
+  &__button-title {
+    font-size: 1.2rem;
+  }
+
+  &__button-icon {
+    margin-left: -0.5rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .variantsBlock {
+
+    &__buttons {
+      box-shadow: none;
+    }
+  }
+}

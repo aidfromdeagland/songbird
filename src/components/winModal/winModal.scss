@@ -1,0 +1,20 @@
+@font-face{
+  font-family:'wtcGoudy';
+  src:url("../../assets/fonts/OPTIwtcGoudy-Medium.otf") format('opentype');
+}
+
+.win-modal {
+  font-family: "wtcGoudy", Arial, serif;
+
+  &__dialog {
+    top: 40%;
+  }
+
+  &__footer {
+
+    &_absolute-win {
+      background: #32383e url("../../assets/images/battlecup.png") no-repeat bottom 1rem left 1rem;
+      background-size: 50px;
+    }
+  }
+}
