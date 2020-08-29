@@ -1,0 +1,54 @@
+.header {
+
+  &__score {
+    font-size: 3rem;
+    color: #D11111;
+
+    &_initial {
+      display: none;
+    }
+  }
+
+  &__button-group_attention {
+    animation: heartbeat 1.5s 3s ease-in-out infinite both;
+  }
+}
+
+@keyframes blink-1 {
+  5%,
+  20%,
+  60%,
+  100% {
+    opacity: 1;
+  }
+  0%,
+  10%,
+  30%,
+  70% {
+    opacity: 0;
+  }
+}
+
+@keyframes heartbeat {
+  from {
+    transform: scale(1);
+    transform-origin: center center;
+    animation-timing-function: ease-out;
+  }
+  10% {
+    transform: scale(0.91);
+    animation-timing-function: ease-in;
+  }
+  17% {
+    transform: scale(0.98);
+    animation-timing-function: ease-out;
+  }
+  33% {
+    transform: scale(0.87);
+    animation-timing-function: ease-in;
+  }
+  45% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
+}
